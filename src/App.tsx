@@ -1,24 +1,18 @@
 import './App.css';
 import MainPage from "./pages/MainPage";
-import {AppShell, Combobox, Container, createTheme, MantineProvider} from "@mantine/core";
+import {AppShell, Container, MantineProvider} from "@mantine/core";
 import React from "react";
-
-const theme = createTheme({
-    /** Put your mantine theme override here */
-});
 
 function App() {
   return (
       <MantineProvider>
           <AppShell
-              header={{ height: 40 }}
+              header={{ height: 50 }}
               padding="md"
           >
               <AppShell.Header>
-                  <Container size={'lg'}>
-                      <div>Logo</div>
-                  </Container>
-
+                      <div>PTBOX Assignment</div>
+                      <div>by marc</div>
               </AppShell.Header>
 
               <AppShell.Main>

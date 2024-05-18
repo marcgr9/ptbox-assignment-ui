@@ -1,13 +1,29 @@
 import React, {useState} from 'react';
-import {Button, Container, Group, Modal, SegmentedControl, Text, TextInput, useMantineTheme} from '@mantine/core';
+import {Button, Container, Group, Modal, SegmentedControl, Text, TextInput} from '@mantine/core';
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {HttpMethod, query} from "../utils/query";
+import {NewScanDTO, Scan, ScanType} from "../model/Scan";
 
 function NewScanModalButton() {
-  const [opened, setOpened] = useState(false);
-  const theme = useMantineTheme();
+    const [domain, setDomain] = useState("")
+    const [type, setType] = useState(ScanType.AMASS)
+    const [opened, setOpened] = useState(false);
+    const queryClient = useQueryClient()
 
-  const handleSubmit = () => {
-    console.log('submitted');
-  };
+    const mutation = useMutation({
+        mutationFn: (dto: NewScanDTO) => {console.log('b'); return query<Scan>("/scans", HttpMethod.POST, dto)},
+        onSuccess: () => {
+            // Invalidate and refetch
+            queryClient.invalidateQueries({ queryKey: ['scans'] })
+        },
+    })
+
+    const handleSubmit = (domain: string, type: ScanType) => {
+        mutation.mutate({
+            website: domain,
+            scanType: type
+        })
+    };
 
   return (
     <>
@@ -19,6 +35,8 @@ function NewScanModalButton() {
       >
           <form>
               <TextInput
+                  value={domain}
+                  onChange={(e) => setDomain(e.currentTarget.value)}
                   label="Domain"
                   placeholder="Enter domain name"
                   maxLength={50}
@@ -29,27 +47,29 @@ function NewScanModalButton() {
                       Scanning tool
                   </Text>
                   <SegmentedControl
+                      value={type}
+                      onChange={(t) => setType(t as ScanType)}
                       data={[
                           {
-                              value: 'AMASS',
+                              value: ScanType.AMASS,
                               label: 'Amass',
                           },
                           {
-                              value: 'THE_HARVESTER',
+                              value: ScanType.THE_HARVESTER,
                               label: 'theHarvester',
                           },
                       ]}
                   />
               </Container>
               <Group align={'center'} mt="md">
-                  <Button onClick={handleSubmit}>Submit</Button>
+                  <Button onClick={() => handleSubmit(domain, type)}>Submit</Button>
               </Group>
           </form>
       </Modal>
 
         <Group>
             <Button onClick={() => setOpened(true)}>
-                Scan a website
+                  Scan a website
             </Button>
         </Group>
     </>

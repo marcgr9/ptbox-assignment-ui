@@ -18,6 +18,11 @@ export interface Scan {
     createdAt: string,
 }
 
+export interface NewScanDTO {
+    scanType: ScanType
+    website: string,
+}
+
 export interface Scans {
     scans: Array<Scan>,
 }
