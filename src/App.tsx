@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MainPage from "./pages/MainPage";
+import {AppShell, Burger, Combobox, createTheme, MantineProvider, Text} from "@mantine/core";
+import React from "react";
+import Header = Combobox.Header;
+import {useDisclosure} from "@mantine/hooks";
+
+const theme = createTheme({
+    /** Put your mantine theme override here */
+});
 
 function App() {
+  const [opened, { toggle }] = useDisclosure();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <MantineProvider>
+          <AppShell
+              header={{ height: 40 }}
+              padding="md"
+          >
+              <AppShell.Header>
+                  <div>Logo</div>
+              </AppShell.Header>
+
+              <AppShell.Main>
+                  <MainPage/>
+              </AppShell.Main>
+          </AppShell>
+      </MantineProvider>
+
+  )
 }
 
 export default App;
