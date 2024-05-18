@@ -1,12 +1,12 @@
 import React from "react";
 import {Container} from "@mantine/core";
-import NewScanCard from "../components/NewScanCard";
+import LandingComponent from "../components/LandingComponent";
 import ScansList from "../components/ScansList";
 
 function MainPage() {
     return (
         <Container size={'lg'}>
-            <NewScanCard />
+            <LandingComponent />
             <ScansList />
         </Container>
     );
