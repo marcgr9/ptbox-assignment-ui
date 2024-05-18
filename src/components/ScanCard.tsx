@@ -5,9 +5,10 @@ import StatusText from "./StatusText";
 
 interface ScanCardProps {
     scan: Scan,
+    onOpenResultsClick: (scan: Scan) => void
 }
 
-function ScanCard({ scan }: ScanCardProps) {
+function ScanCard({ scan, onOpenResultsClick }: ScanCardProps) {
     return (
         <Card shadow="sm" w={'auto'} maw={'400'} padding="md">
             <Text fw={500} size="lg" mb="xs">
@@ -17,8 +18,13 @@ function ScanCard({ scan }: ScanCardProps) {
                 Scan ID: {scan.id.substring(0, 5)}...{scan.id.substring(scan.id.length - 5)}
             </Text>
             <StatusText status={scan.status} />
-            <Group mt="md">
-                <Button disabled={scan.status !== ScanStatus.COMPLETED}>Open Results</Button>
+            <Group mt="xl">
+                <Button
+                    onClick={() => onOpenResultsClick(scan)}
+                    disabled={scan.status !== ScanStatus.COMPLETED}
+                    fullWidth >
+                    See details & results
+                </Button>
             </Group>
         </Card>
     );

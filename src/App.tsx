@@ -1,18 +1,20 @@
 import './App.css';
 import MainPage from "./pages/MainPage";
-import {AppShell, Container, MantineProvider} from "@mantine/core";
+import {AppShell, Container, createTheme, MantineProvider, Text} from "@mantine/core";
 import React from "react";
 
 function App() {
   return (
       <MantineProvider>
           <AppShell
-              header={{ height: 50 }}
+              header={{ height: 90 }}
               padding="md"
           >
               <AppShell.Header>
-                      <div>PTBOX Assignment</div>
-                      <div>by marc</div>
+                  <Container size={'lg'}>
+                      <img src={'ptbox-logo.webp'} height={60}/>
+                      <Text>Assignment</Text>
+                  </Container>
               </AppShell.Header>
 
               <AppShell.Main>

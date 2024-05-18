@@ -1,11 +1,14 @@
-import React, {useEffect, useRef} from "react";
-import {Center, Loader, SimpleGrid, Text} from "@mantine/core";
+import React, {useEffect, useRef, useState} from "react";
+import {Center, Group, Loader, SimpleGrid, Text} from "@mantine/core";
 import ScanCard from "./ScanCard";
 import {HttpMethod, query as q} from "../utils/query";
 import {Scan, Scans} from "../model/Scan";
 import {QueryClient, useQuery, useQueryClient} from "@tanstack/react-query";
+import ResultsModal from "./ResultsModal";
 
 function ScansList() {
+    const [highlightedScan, setHighlightedScan] = useState<Scan | null>(null)
+
     const queryClient: QueryClient = useQueryClient()
     const query = useQuery({
         queryKey: ['scans'],
@@ -39,30 +42,36 @@ function ScansList() {
         return () => connection.current?.close()
     }, [updateScan])
 
-    if (query.isLoading) return (
-        <Center p={'lg'}>
-            <Loader />
-        </Center>
-    )
-
     return (
         <>
-            <Text fw={800} size={'xl'} mb="xs" mt={'xl'}>
-                Past scans
-            </Text>
-            <Text fw={500} size={'md'} mb="xs">
-                Filter by
-            </Text>
+            <Group>
+                <Text fw={800} size={'xl'} mb="xs" mt={'xl'}>
+                    Past scans
+                </Text>
+                {
+                    query.isLoading ? <Loader /> : null
+                }
+            </Group>
 
             <SimpleGrid
                 cols={{xs: 1, sm: 2, md: 4}}
                 spacing="lg" >
                 {
-                    query?.data?.scans.map((s) => <ScanCard scan={s} key={s.id}/> )
+                    query?.data?.scans.map((s) => (
+                        <ScanCard
+                            key={s.id}
+                            scan={s}
+                            onOpenResultsClick={setHighlightedScan}
+                        />
+                    ))
                 }
             </SimpleGrid>
-        </>
 
+            <ResultsModal
+                isOpen={highlightedScan != null}
+                onClose={() => setHighlightedScan(null)}
+                scan={highlightedScan!} />
+        </>
     );
 }
 
