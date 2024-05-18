@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Container, Group, Modal, SegmentedControl, Text, TextInput, useMantineTheme} from '@mantine/core';
 
-function ScanFormModal() {
+function NewScanModalButton() {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
 
@@ -13,7 +13,7 @@ function ScanFormModal() {
     <>
       <Modal
         opened={opened}
-        onClose={() => {}}
+        onClose={() => setOpened(false)}
         title="New Scan"
         closeOnClickOutside={false}
       >
@@ -48,10 +48,12 @@ function ScanFormModal() {
       </Modal>
 
         <Group>
-            <Button onClick={() => setOpened(true)}>Open New Scan Modal</Button>
+            <Button onClick={() => setOpened(true)}>
+                Scan a website
+            </Button>
         </Group>
     </>
   );
 }
 
-export default ScanFormModal;
+export default NewScanModalButton;

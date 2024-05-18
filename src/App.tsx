@@ -1,17 +1,13 @@
 import './App.css';
 import MainPage from "./pages/MainPage";
-import {AppShell, Burger, Combobox, createTheme, MantineProvider, Text} from "@mantine/core";
+import {AppShell, Combobox, Container, createTheme, MantineProvider} from "@mantine/core";
 import React from "react";
-import Header = Combobox.Header;
-import {useDisclosure} from "@mantine/hooks";
 
 const theme = createTheme({
     /** Put your mantine theme override here */
 });
 
 function App() {
-  const [opened, { toggle }] = useDisclosure();
-
   return (
       <MantineProvider>
           <AppShell
@@ -19,7 +15,10 @@ function App() {
               padding="md"
           >
               <AppShell.Header>
-                  <div>Logo</div>
+                  <Container size={'lg'}>
+                      <div>Logo</div>
+                  </Container>
+
               </AppShell.Header>
 
               <AppShell.Main>

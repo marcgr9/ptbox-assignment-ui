@@ -3,7 +3,7 @@ import {Button, Card, Container, Group, Text} from "@mantine/core";
 
 function ScanCard() {
     return (
-        <Card shadow="sm" padding="lg" style={{ maxWidth: 400, margin: 'auto' }}>
+        <Card shadow="sm" w={'auto'} maw={'400'} padding="md">
             <Text fw={500} size="lg" mb="xs">
                 gruita.ro
             </Text>

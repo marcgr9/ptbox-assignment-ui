@@ -1,13 +1,13 @@
 import React from "react";
-import {Combobox, Container} from "@mantine/core";
-import ScanFormModal from "../components/ScanFormModal";
-import ScanCard from "../components/ScanCard";
+import {Container} from "@mantine/core";
+import NewScanCard from "../components/NewScanCard";
+import ScansList from "../components/ScansList";
 
 function MainPage() {
     return (
-        <Container size="xl">
-            <ScanFormModal />
-            <ScanCard />
+        <Container size={'lg'}>
+            <NewScanCard />
+            <ScansList />
         </Container>
     );
 }
