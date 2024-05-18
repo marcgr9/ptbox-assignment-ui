@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button:disabled, button[data-disabled] {
+    border-color: var(--mantine-color-gray-3), var(--mantine-color-dark-4);
+    background-color: transparent !important;
+}

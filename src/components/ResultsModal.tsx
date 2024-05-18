@@ -11,7 +11,7 @@ interface ResultsModalProps {
 function NoResults() {
     return (
         <Center p={'lg'}>
-            <Text c={'red'}>
+            <Text c={'red'} style={{userSelect: 'none'}}>
                 No results were found.
             </Text>
         </Center>

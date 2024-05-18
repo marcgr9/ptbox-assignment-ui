@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import {Center, Group, Loader, SimpleGrid, Text} from "@mantine/core";
 import ScanCard from "./ScanCard";
 import {HttpMethod, query as q} from "../utils/query";
@@ -40,7 +40,7 @@ function ScansList() {
         connection.current = ws
 
         return () => connection.current?.close()
-    }, [updateScan])
+    }, [])
 
     return (
         <>
@@ -53,9 +53,12 @@ function ScansList() {
                 }
             </Group>
 
+            <Center>
+
+            </Center>
             <SimpleGrid
-                cols={{xs: 1, sm: 2, md: 4}}
-                spacing="lg" >
+                cols={{xs: 2, sm: 2, md: 4}}
+                spacing="lg">
                 {
                     query?.data?.scans.map((s) => (
                         <ScanCard

@@ -14,7 +14,7 @@ function LandingComponent() {
                 Efficiently scan domains using the OSSINT tools Amass and theHarvester, providing crucial information for cybersecurity and research purposes.
             </Text>
 
-            <Button bg={'green'} onClick={() => setIsModalOpen(true)}>
+            <Button bg={'#993dcf'} onClick={() => setIsModalOpen(true)}>
                 Scan a website
             </Button>
 

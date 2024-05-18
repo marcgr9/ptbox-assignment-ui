@@ -1,19 +1,21 @@
 import './App.css';
 import MainPage from "./pages/MainPage";
-import {AppShell, Container, createTheme, MantineProvider, Text} from "@mantine/core";
+import {AppShell, Container, createTheme, MantineProvider, Stack, Text} from "@mantine/core";
 import React from "react";
 
 function App() {
   return (
-      <MantineProvider>
+      <MantineProvider defaultColorScheme={'dark'}>
           <AppShell
               header={{ height: 90 }}
               padding="md"
           >
-              <AppShell.Header>
+              <AppShell.Header className={"App-header"}>
                   <Container size={'lg'}>
-                      <img src={'ptbox-logo.webp'} height={60}/>
-                      <Text>Assignment</Text>
+                      <Stack align={'end'} w={'min-content'} gap={'0'}>
+                          <img src={'ptbox-logo.webp'} height={60}/>
+                          <Text fw={'500'} style={{userSelect: 'none'}}>ASSIGNMENT <Text size={'xs'} span>by marc</Text></Text>
+                      </Stack>
                   </Container>
               </AppShell.Header>
 

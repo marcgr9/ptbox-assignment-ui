@@ -7,7 +7,7 @@ interface StatusTextProps {
 
 function StatusText({ status }: StatusTextProps) {
     if (status === ScanStatus.COMPLETED) return (
-        <Text c={'green'}>
+        <Text c={'#549c68'}>
             Completed
         </Text>
     )

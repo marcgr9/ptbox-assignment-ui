@@ -22,6 +22,7 @@ function NewScanModal({ isOpen, onClose, onScanInitiated }: ModalProps) {
         onSuccess: () => {
             setDomain("")
             setType(ScanType.AMASS)
+            setDomainError("")
             onScanInitiated()
 
             queryClient.invalidateQueries({ queryKey: ['scans'] })
@@ -43,9 +44,11 @@ function NewScanModal({ isOpen, onClose, onScanInitiated }: ModalProps) {
     return (
       <Modal
         opened={isOpen}
-        onClose={() => onClose(mutation.isPending)}
+        onClose={() => {
+            setDomainError("")
+            onClose(mutation.isPending)
+        }}
         title="New Scan"
-        closeOnClickOutside={false}
       >
           <form>
               <TextInput
@@ -83,6 +86,11 @@ function NewScanModal({ isOpen, onClose, onScanInitiated }: ModalProps) {
               </Container>
               <Group align={'center'} mt="md">
                   <Button
+                      bg={'#993dcf'}
+                      fullWidth
+                      mr={'md'}
+                      ml={'md'}
+                      mt={'md'}
                       disabled={mutation.isPending}
                       onClick={() => handleSubmit(domain, type)} >
                       Submit
