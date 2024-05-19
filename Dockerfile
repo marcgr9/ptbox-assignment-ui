@@ -9,7 +9,7 @@ COPY package-lock.json /app/
 COPY tsconfig.json /app/
 COPY .env /app/
 
-COPY node_modules /app/node_modules
-#RUN npm install --verbose
+#COPY node_modules /app/node_modules
+RUN npm install --verbose
 
 CMD ["npm", "run", "start"]
