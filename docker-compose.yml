@@ -1,5 +1,7 @@
+name: ptbox
 services:
   ui:
     build: .
+    container_name: ptbox-ui
     ports:
       - "3000:3000"
