@@ -30,7 +30,7 @@ function ScansList() {
     const connection = useRef<WebSocket | null>(null)
 
     useEffect(() => {
-        const ws: WebSocket = new WebSocket("ws://127.0.0.1:8080")
+        const ws: WebSocket = new WebSocket(process.env.REACT_APP_BASE_WS_URL!)
 
         ws.addEventListener("message", (event) => {
             let updatedScan = JSON.parse(event.data) as Scan

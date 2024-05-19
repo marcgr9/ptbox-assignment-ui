@@ -12,7 +12,7 @@ export async function query<T>(
     httpVerb: HttpMethod,
     body: { [index: string]: any } | null = null,
 ) {
-    let res = await fetch("http://0.0.0.0:8080" + endpoint, {
+    let res = await fetch(process.env.REACT_APP_BASE_REST_URL + endpoint, {
         method: httpVerb.toString(),
         headers: {
             'Content-Type': 'application/json'
