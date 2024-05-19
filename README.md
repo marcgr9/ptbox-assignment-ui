@@ -7,3 +7,6 @@
 
 ### Warning
 Windows doesn't reroute `0.0.0.0` to `localhost`! If the host machine is running Windows, you need to change the default values from `.env-example`.
+
+## How to use
+The application runs by default on port 3000.
