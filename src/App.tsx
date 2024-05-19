@@ -1,6 +1,6 @@
 import './App.css';
 import MainPage from "./pages/MainPage";
-import {AppShell, Container, createTheme, MantineProvider, Stack, Text} from "@mantine/core";
+import {AppShell, Container, MantineProvider, Stack, Text} from "@mantine/core";
 import React from "react";
 
 function App() {

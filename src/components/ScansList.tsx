@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Center, Group, Loader, SimpleGrid, Text} from "@mantine/core";
 import ScanCard from "./ScanCard";
 import {HttpMethod, query as q} from "../utils/query";

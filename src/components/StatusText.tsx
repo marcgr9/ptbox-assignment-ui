@@ -1,5 +1,5 @@
 import {ScanStatus} from "../model/Scan";
-import {Group, Loader, Paper, Text} from "@mantine/core";
+import {Group, Loader, Text} from "@mantine/core";
 
 interface StatusTextProps {
     status: ScanStatus,
