@@ -25,6 +25,12 @@ function ScanCard({ scan, onOpenResultsClick }: ScanCardProps) {
             <Text c="dimmed" size="sm" mb={'xs'}>
                 Scan ID: {scan.id.substring(0, 5)}...{scan.id.substring(scan.id.length - 5)}
             </Text>
+            <Text c="dimmed" size="xs">
+                Started: {new Date(scan.createdAt).toLocaleString()}
+            </Text>
+            <Text c="dimmed" size="xs" mb={'xs'}>
+                Completed: {scan.completedAt ? new Date(scan.completedAt).toLocaleString() : "-"}
+            </Text>
             <StatusText status={scan.status} />
             <Group mt="lg">
                 <Button

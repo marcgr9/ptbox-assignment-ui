@@ -30,7 +30,7 @@ function NewScanModal({ isOpen, onClose, onScanInitiated }: ModalProps) {
     })
 
     const handleSubmit = (domain: string, type: ScanType) => {
-        if (!/[a-zA-Z0-9][a-zA-Z0-9-_]+\.[a-zA-Z]{2,11}?$/.test(domain)) {
+        if (!/[a-zA-Z0-9][a-zA-Z0-9-_]*\.[a-zA-Z]{2,11}?$/.test(domain)) {
             setDomainError(" ")
             return
         }

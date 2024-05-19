@@ -1,21 +1,12 @@
 import React from 'react';
 import {Center, Modal, ScrollArea, Text} from '@mantine/core';
 import {Scan} from "../model/Scan";
+import DataPoint from "./DataPoint";
 
 interface ResultsModalProps {
     isOpen: boolean,
     onClose: () => void,
     scan: Scan,
-}
-
-function NoResults() {
-    return (
-        <Center p={'lg'}>
-            <Text c={'red'} style={{userSelect: 'none'}}>
-                No results were found.
-            </Text>
-        </Center>
-    )
 }
 
 function ResultsModal({ isOpen, onClose, scan }: ResultsModalProps) {
@@ -49,58 +40,10 @@ function ResultsModal({ isOpen, onClose, scan }: ResultsModalProps) {
             <Text c={'dimmed'} mb={'md'}>
                 To: {new Date(scan?.completedAt).toLocaleString()}
             </Text>
-            <Text fw={700} size={'lg'}>
-                WhoIs results
-            </Text>
-            <ScrollArea.Autosize mah={400}>
-                {
-                    scan?.results.whoIs.length > 0
-                        ? (
-                            scan?.results.whoIs.map((res: string) => (
-                                <Text c={'dimmed'} key={res}>{res}</Text>
-                            ))
-                        ) : <NoResults />
-                }
-            </ScrollArea.Autosize>
-            <Text fw={700} size={'lg'}>
-                IP Addresses
-            </Text>
-            <ScrollArea.Autosize mah={400}>
-                {
-                    scan?.results.ips.length > 0
-                        ? (
-                            scan?.results.ips.map((res: string) => (
-                                <Text c={'dimmed'} key={res}>{res}</Text>
-                            ))
-                        ) : <NoResults />
-                }
-            </ScrollArea.Autosize>
-            <Text fw={700} size={'lg'}>
-                Email Addresses
-            </Text>
-            <ScrollArea.Autosize mah={400}>
-                {
-                    scan?.results.emails.length > 0
-                        ? (
-                            scan?.results.emails.map((res: string) => (
-                                <Text c={'dimmed'} key={res}>{res}</Text>
-                            ))
-                        ) : <NoResults />
-                }
-            </ScrollArea.Autosize>
-            <Text fw={700} size={'lg'}>
-                Subdomains
-            </Text>
-            <ScrollArea.Autosize mah={400}>
-                {
-                    scan?.results.subdomains.length > 0
-                        ? (
-                            scan?.results.subdomains.map((res: string) => (
-                                <Text c={'dimmed'} key={res}>{res}</Text>
-                            ))
-                        ) : <NoResults />
-                }
-            </ScrollArea.Autosize>
+            <DataPoint title={"WhoIS results"} results={scan?.results.whoIs} />
+            <DataPoint title={"IP Addresses"} results={scan?.results.ips} />
+            <DataPoint title={"Email Addresses"} results={scan?.results.emails} />
+            <DataPoint title={"Subdomains"} results={scan?.results.subdomains} />
         </Modal>
     );
 }
