@@ -14,8 +14,16 @@ export interface Scan {
     type: ScanType
     website: string,
     status: ScanStatus,
-    results: Array<string>,
+    results: Results,
     createdAt: string,
+    completedAt: string,
+}
+
+export interface Results {
+    whoIs: string[],
+    ips: string[],
+    emails: string[],
+    subdomains: string[],
 }
 
 export interface NewScanDTO {
@@ -24,5 +32,5 @@ export interface NewScanDTO {
 }
 
 export interface Scans {
-    scans: Array<Scan>,
+    scans: Scan[],
 }

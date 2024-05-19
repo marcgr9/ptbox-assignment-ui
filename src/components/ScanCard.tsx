@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Card, Group, Text, useMantineTheme} from "@mantine/core";
 import {Scan, ScanStatus} from "../model/Scan";
 import StatusText from "./StatusText";
+import {areScanResultsEmpty} from "../utils/utils";
 
 interface ScanCardProps {
     scan: Scan,
@@ -15,6 +16,11 @@ function ScanCard({ scan, onOpenResultsClick }: ScanCardProps) {
         <Card withBorder w={'auto'} maw={theme.breakpoints.xs} padding="md">
             <Text fw={500} size="lg" mb="xs" c={'white'}>
                 {scan.website}
+                {
+                    scan.status === ScanStatus.COMPLETED && areScanResultsEmpty(scan)
+                        ? <Text c={'red'} ms={'sm'} size={'xs'} span style={{userSelect: 'none'}}>! no results</Text>
+                        : null
+                }
             </Text>
             <Text c="dimmed" size="sm" mb={'xs'}>
                 Scan ID: {scan.id.substring(0, 5)}...{scan.id.substring(scan.id.length - 5)}

@@ -41,20 +41,62 @@ function ResultsModal({ isOpen, onClose, scan }: ResultsModalProps) {
                 {scan?.type}
             </Text>
             <Text fw={700} size={'lg'}>
-                Started at
+                Execution
+            </Text>
+            <Text c={'dimmed'}>
+                From: {new Date(scan?.createdAt).toLocaleString()}
             </Text>
             <Text c={'dimmed'} mb={'md'}>
-                {new Date(scan?.createdAt).toLocaleString()}
+                To: {new Date(scan?.completedAt).toLocaleString()}
             </Text>
             <Text fw={700} size={'lg'}>
                 WhoIs results
             </Text>
             <ScrollArea.Autosize mah={400}>
                 {
-                    scan?.results.length > 0
+                    scan?.results.whoIs.length > 0
                         ? (
-                            scan?.results.map((website: string) => (
-                                <Text c={'dimmed'}>{website}</Text>
+                            scan?.results.whoIs.map((res: string) => (
+                                <Text c={'dimmed'} key={res}>{res}</Text>
+                            ))
+                        ) : <NoResults />
+                }
+            </ScrollArea.Autosize>
+            <Text fw={700} size={'lg'}>
+                IP Addresses
+            </Text>
+            <ScrollArea.Autosize mah={400}>
+                {
+                    scan?.results.ips.length > 0
+                        ? (
+                            scan?.results.ips.map((res: string) => (
+                                <Text c={'dimmed'} key={res}>{res}</Text>
+                            ))
+                        ) : <NoResults />
+                }
+            </ScrollArea.Autosize>
+            <Text fw={700} size={'lg'}>
+                Email Addresses
+            </Text>
+            <ScrollArea.Autosize mah={400}>
+                {
+                    scan?.results.emails.length > 0
+                        ? (
+                            scan?.results.emails.map((res: string) => (
+                                <Text c={'dimmed'} key={res}>{res}</Text>
+                            ))
+                        ) : <NoResults />
+                }
+            </ScrollArea.Autosize>
+            <Text fw={700} size={'lg'}>
+                Subdomains
+            </Text>
+            <ScrollArea.Autosize mah={400}>
+                {
+                    scan?.results.subdomains.length > 0
+                        ? (
+                            scan?.results.subdomains.map((res: string) => (
+                                <Text c={'dimmed'} key={res}>{res}</Text>
                             ))
                         ) : <NoResults />
                 }
