@@ -44,8 +44,8 @@ function ScansList() {
 
     return (
         <>
-            <Group>
-                <Text fw={800} size={'xl'} mb="xs" mt={'xl'}>
+            <Group mt={'xl'} mb={'xs'}>
+                <Text fw={800} size={'xl'}>
                     Past scans
                 </Text>
                 {
