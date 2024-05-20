@@ -14,7 +14,7 @@ function ScanCard({ scan, onOpenResultsClick }: ScanCardProps) {
 
     return (
         <Card withBorder w={'auto'} maw={theme.breakpoints.xs} padding="md">
-            <Text fw={500} size="lg" mb="xs" c={'white'}>
+            <Text fw={500} size="lg" mb="xs" c={'white'} truncate={'end'}>
                 {scan.website}
                 {
                     scan.status === ScanStatus.COMPLETED && areScanResultsEmpty(scan)
